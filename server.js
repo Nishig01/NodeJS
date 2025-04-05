@@ -65,10 +65,7 @@ const server = http.createServer(async(req,res)=>{
         res.writeHead(500, {'Content-Type': 'text/html'});
         res.end('<h1>Internal Server Error</h1>');  
     }
-    
-    
 
-   
 })
 
 server.listen(PORT, ()=>{
