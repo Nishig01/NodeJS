@@ -1,0 +1,26 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "main": "myapp.js",
+  "scripts": {
+    "start": "node server2.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --env-file=.env server.js",
+    "dev:watch": "nodemon --watch server.js --exec node server.js"
+ },
+  "type": "module",
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/Nishig01/NodeJS.git"
+},
+  "author": "Nishi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nishig01/NodeJS/issues"
+  },
+  "homepage": "https://github.com/Nishig01/NodeJS#readme",
+  "description": "",
+  "dependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
