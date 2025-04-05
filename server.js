@@ -11,7 +11,7 @@ const __dirname = path.dirname(__firname);
 console.log(`__dirname: ${__dirname}`);
 console.log(__firname);
 
-const server = http.createServer((req,res)=>{
+const server = http.createServer(async(req,res)=>{
     // console.log(req.url);
     // console.log(req.method);
     // console.log(req.headers);
@@ -29,19 +29,28 @@ const server = http.createServer((req,res)=>{
     try {
         //Check if GET request
         if (req.method === 'GET') {
+            let filePath;
+
             // Handle GET request
             if(req.url === '/'){
-                res.writeHead(200, {'Content-Type': 'text/html'});
-                res.end('<h1>HomePage</h1>');
+                filePath = path.join(__dirname, 'public', 'index.html');
+                // res.writeHead(200, {'Content-Type': 'text/html'});
+                // res.end('<h1>HomePage</h1>');
             }
             else if(req.url ==='/about') {
-                res.writeHead(200, {'Content-Type': 'text/html'});
-                res.end('<h1>AboutPage</h1>');
+                filePath = path.join(__dirname, 'public', 'about.html');
+                // res.writeHead(200, {'Content-Type': 'text/html'});
+                // res.end('<h1>AboutPage</h1>');
             }
             else{
-                res.writeHead(404, {'Content-Type': 'text/html'})
-                res.end('<h1>Not Found</h1>')
+                throw new Error('Page not found');
+                // res.writeHead(404, {'Content-Type': 'text/html'})
+                // res.end('<h1>Not Found</h1>')
             }
+            const data = await fs.readFile(filePath);
+            res.setHeader('Content-Type', 'text/html');
+            res.write(data);
+            res.end();
         } else if (req.method === 'POST') {
             // Handle POST request
             console.log('POST request received');
